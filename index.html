@@ -113,9 +113,10 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             background-color: #000;
         }
-        #youtube-player {
+        .video-short-container iframe {
             width: 100%;
             height: 100%;
+            border: 0;
         }
 
         .proceed-button {
@@ -233,7 +234,7 @@
             <h2 class="text-2xl font-semibold mb-4 section-title">Startpunkt deiner Analyse</h2>
             <p class="text-gray-600 mb-6">Beginne deine interaktive Entdeckungsreise in die Welt des #instalehrerzimmers und der Bildungsinfluencer\*innen.</p>
             <div class="video-short-container">
-                <div id="youtube-player"></div>
+                <iframe id="youtube-player" src="https://www.youtube.com/embed/_9_GHzs6dDw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <button id="proceed-to-interactive" class="proceed-button pulsing">
                 Analyse starten
@@ -281,7 +282,6 @@
         </div>
     </div>
 
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script type="module">
         // Content for each section
         const contentData = {
@@ -305,8 +305,10 @@
                                 <div class="thesis-card" draggable="true" id="card-1"><p><strong>These 1:</strong> Bildungsinfluencer sind eine <strong>Gefahr</strong> für die Professionalität von Lehrkräften.</p></div>
                                 <div class="thesis-card" draggable="true" id="card-2"><p><strong>These 2:</strong> Das #instalehrerzimmer fördert primär <strong>oberflächlichen Austausch</strong>.</p></div>
                                 <div class="thesis-card" draggable="true" id="card-3"><p><strong>These 3:</strong> Der Hype um <strong>'perfekte' Materialien</strong> setzt Lehrkräfte unnötig unter Druck.</p></div>
+                                <div class="thesis-card" draggable="true" id="card-4"><p><strong>These 4:</strong> Die ständige Sichtbarkeit auf Instagram führt zu einer ungesunden <strong>Vermischung von Berufs- und Privatleben</strong>.</p></div>
+                                <div class="thesis-card" draggable="true" id="card-5"><p><strong>These 5:</strong> Bildungsinfluencer <strong>kommerzialisieren</strong> den Bildungssektor und machen aus pädagogischen Inhalten Werbeprodukte.</p></div>
                             </div>
-                            <p class="text-center font-semibold text-lg mb-4">Verbleibende Thesen: <span id="card-counter">3</span></p>
+                            <p class="text-center font-semibold text-lg mb-4">Verbleibende Thesen: <span id="card-counter">5</span></p>
                             <div class="drop-zones">
                                 <div class="drop-zone" data-zone="agree"><h5>Stimme eher zu</h5></div>
                                 <div class="drop-zone" data-zone="neutral"><h5>Neutral / Unentschieden</h5></div>
@@ -402,6 +404,10 @@
         }
 
         proceedButton.addEventListener('click', () => {
+            const player = document.getElementById('youtube-player');
+            if (player) {
+                player.src = ""; // This stops the video
+            }
             initialVideoSection.classList.add('hidden');
             interactiveSection.classList.remove('hidden');
             interactiveSection.classList.add('content-fade-in');
