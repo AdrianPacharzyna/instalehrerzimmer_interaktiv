@@ -110,12 +110,23 @@
             border: 1px solid #ebdfb4;
             padding: 24px; margin-bottom: 32px; text-align: center;
         }
-        .video-embed-placeholder {
-            background-color: #ebdfb4; border-radius: 12px; min-height: 360px;
-            width: 100%; max-width: 640px; margin: 0 auto 24px auto;
-            display: flex; align-items: center; justify-content: center; color: #928a5d;
+        
+        /* YouTube Short Embed Styling */
+        .video-short-container {
+            width: 100%;
+            max-width: 315px; /* Typical short width */
+            margin: 0 auto 24px auto;
+            aspect-ratio: 9 / 16;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .video-embed-placeholder svg { width: 60px; height: 60px; }
+        .video-short-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
 
         .proceed-button {
             background-color: #e1b671; color: white; padding: 12px 24px;
@@ -247,8 +258,8 @@
         <section id="initial-video-section" class="initial-container">
             <h2 class="text-2xl font-semibold mb-4 section-title">Startpunkt: Ein Blick auf Instagram-Reels</h2>
             <p class="text-gray-600 mb-6">Bitte sieh dir zuerst dieses kurze Video an, um einen Eindruck vom Thema zu bekommen. Es zeigt typische Ausschnitte, wie sie im #instalehrerzimmer und von Bildungsinfluencerinnen geteilt werden.</p>
-            <div class="video-embed-placeholder">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <div class="video-short-container">
+                <iframe src="https://www.youtube.com/embed/_9_GHzs6dDw?autoplay=1&mute=1&loop=1&playlist=_9_GHzs6dDw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <button id="proceed-to-interactive" class="proceed-button">
                 Weiter zur interaktiven Analyse
@@ -312,8 +323,8 @@
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, onSnapshot, collection, runTransaction } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, runTransaction, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // --- DEINE FIREBASE KONFIGURATION ---
         const firebaseConfig = {
@@ -457,7 +468,8 @@
             q2: 'These 2: "Das #instalehrerzimmer fördert primär oberflächlichen Austausch statt echter kollegialer Kooperation."',
             q3: 'These 3: "Der Hype um \'perfekte\' Materialien und Klassenzimmer auf Instagram setzt Lehrkräfte unnötig unter Druck."'
         };
-        
+        let unsubscribePoll;
+
         function initializeSequentialPoll() {
             const pollContainer = document.getElementById('sequentialPoll');
             if (!pollContainer) return;
@@ -465,7 +477,7 @@
             let currentStep = 0;
             const steps = Array.from(pollContainer.querySelectorAll('.poll-question-step'));
             
-            function showNextStep() {
+            async function showNextStep() {
                 steps.forEach((step, index) => step.classList.toggle('hidden', index !== currentStep));
                 if (currentStep >= steps.length) {
                     pollContainer.querySelector('#collected-poll-results').classList.remove('hidden');
@@ -474,16 +486,17 @@
                     const resultsContainer = document.getElementById('poll-results-container');
                     resultsContainer.innerHTML = "<p>Ergebnisse werden geladen...</p>";
 
-                    getDoc(doc(db, pollCollectionId, pollDocId)).then(doc => {
-                         if (doc.exists()) {
-                            updatePollResultsUI(doc.data());
+                    try {
+                        const docSnap = await getDoc(doc(db, pollCollectionId, pollDocId));
+                        if (docSnap.exists()) {
+                            updatePollResultsUI(docSnap.data());
                         } else {
-                            resultsContainer.innerHTML = "<p>Noch keine Abstimmungsergebnisse vorhanden. Sei der/die Erste, der/die abstimmt!</p>";
+                            resultsContainer.innerHTML = "<p>Noch keine Abstimmungsergebnisse vorhanden.</p>";
                         }
-                    }).catch(error => {
-                        console.error("Error fetching poll results:", error);
-                        resultsContainer.innerHTML = "<p>Fehler beim Laden der Ergebnisse.</p>";
-                    });
+                    } catch (error) {
+                         console.error("Error fetching poll results:", error);
+                         resultsContainer.innerHTML = "<p>Fehler beim Laden der Ergebnisse.</p>";
+                    }
                 }
             }
 
