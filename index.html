@@ -10,19 +10,22 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <style>
         /* --- Blog Design Palette --- */
-        /* #928a5d; (Dunkles Grün/Braun) */
-        /* #ebdfb4; (Helles Beige) */
-        /* #e1b671; (Gold/Ocker) */
-        /* #bbe4f7; (Helles Blau) */
-        /* #faf7d6; (Sehr helles Beige/Creme) */
-        /* #b19baa; (Sanftes Rosa/Flieder) */
-        /* #d6f3f8; (Sehr helles Blau) */
-        /* #daccd8; (Helles Flieder) */
+        :root {
+            --color-primary: #928a5d; /* Dunkles Grün/Braun */
+            --color-accent: #e1b671;  /* Gold/Ocker */
+            --color-bg-light: #faf7d6; /* Sehr helles Beige/Creme */
+            --color-bg-medium: #ebdfb4;/* Helles Beige */
+            --color-text: #3a3a3a;
+            --color-themed-blue-bg: #f0f9ff;
+            --color-themed-blue-border: #bbe4f7;
+            --color-themed-pink-bg: #f8f5f7;
+            --color-themed-pink-border: #b19baa;
+        }
         
         body {
             font-family: 'EB Garamond', serif;
-            background-color: #faf7d6; /* Main background color */
-            color: #3a3a3a;
+            background-color: var(--color-bg-light);
+            color: var(--color-text);
         }
         .content-card {
             background-color: white;
@@ -31,21 +34,21 @@
             padding: 24px;
             margin-top: 24px;
             transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-            border: 1px solid #ebdfb4;
+            border: 1px solid var(--color-bg-medium);
         }
 
         .progress-bar-container {
             width: 100%;
-            background-color: #ebdfb4;
+            background-color: var(--color-bg-medium);
             border-radius: 8px;
             margin-bottom: 16px;
             overflow: hidden;
-            border: 1px solid #928a5d;
+            border: 1px solid var(--color-primary);
         }
         .progress-bar {
             width: 0%;
             height: 20px;
-            background-color: #e1b671; /* Accent Gold */
+            background-color: var(--color-accent);
             transition: width 0.5s ease-in-out;
             display: flex;
             align-items: center;
@@ -64,50 +67,48 @@
             border-radius: 8px;
             font-weight: 500;
             transition: all 0.3s ease-in-out;
-            border: 1px solid #ebdfb4;
+            border: 1px solid var(--color-bg-medium);
             cursor: pointer;
             background-color: #ffffff;
-            color: #928a5d;
+            color: var(--color-primary);
             font-size: 0.9rem;
             text-align: center;
         }
         .nav-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(146, 138, 93, 0.2);
-            border-color: #e1b671;
+            border-color: var(--color-accent);
         }
         .nav-button.active {
-            background-color: #928a5d; /* Dark Green/Brown */
+            background-color: var(--color-primary);
             color: white;
             font-weight: 600;
-            border-color: #928a5d;
+            border-color: var(--color-primary);
         }
         .nav-button.visited:not(.active) {
-            background-color: #faf7d6;
-            color: #928a5d;
-            border-color: #ebdfb4;
+            background-color: var(--color-bg-light);
+            color: var(--color-primary);
+            border-color: var(--color-bg-medium);
         }
          .nav-button.visited:not(.active):hover {
-            background-color: #ebdfb4;
-            border-color: #e1b671;
+            background-color: var(--color-bg-medium);
+            border-color: var(--color-accent);
         }
         .nav-button.locked {
             background-color: #f5f5f5; color: #b0b0b0; border-color: #e0e0e0;
             cursor: not-allowed; opacity: 0.8;
         }
-        .nav-button.locked:hover {
-            transform: none; box-shadow: none;
-        }
+        .nav-button.locked:hover { transform: none; box-shadow: none; }
         .nav-button .icon { width: 18px; height: 18px; }
         .nav-button.active .icon path { stroke: white; }
-        .nav-button .visited-icon { width: 16px; height: 16px; color: #928a5d; display: none; }
+        .nav-button .visited-icon { width: 16px; height: 16px; color: var(--color-primary); display: none; }
         .nav-button.visited .visited-icon { display: inline-block; }
 
         /* Initial Section Styling */
         .initial-container {
             background-color: white; border-radius: 12px;
             box-shadow: 0 4px 15px -2px rgba(0, 0, 0, 0.07);
-            border: 1px solid #ebdfb4;
+            border: 1px solid var(--color-bg-medium);
             padding: 24px; margin-bottom: 32px; text-align: center;
         }
         
@@ -120,16 +121,16 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background-color: #000;
         }
-        .video-short-container iframe {
+        #youtube-player {
             width: 100%;
             height: 100%;
-            border: 0;
         }
 
 
         .proceed-button {
-            background-color: #e1b671; color: white; padding: 12px 24px;
+            background-color: var(--color-accent); color: white; padding: 12px 24px;
             border-radius: 8px; font-weight: 600;
             transition: background-color 0.2s ease-in-out, transform 0.2s ease;
             font-size: 1rem;
@@ -137,114 +138,54 @@
         .proceed-button:hover { background-color: #d8a95a; transform: scale(1.05); }
 
         /* Typography */
-        h1.main-title { color: #928a5d; font-size: 2.5rem; }
-        h2.section-title { color: #928a5d; font-size: 1.75rem; }
-        h3.content-title {
-            font-size: 1.6rem; font-weight: 600; margin-bottom: 1rem; color: #928a5d;
-        }
-        h4 { 
-            font-size: 1.2rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; 
-            display: flex; align-items: center; gap: 0.5rem; color: #928a5d;
-        }
+        h1.main-title { color: var(--color-primary); font-size: 2.5rem; }
+        h2.section-title { color: var(--color-primary); font-size: 1.75rem; }
+        h3.content-title { font-size: 1.6rem; font-weight: 600; margin-bottom: 1rem; color: var(--color-primary); }
+        h4 { font-size: 1.2rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; color: var(--color-primary); }
         h4 .heading-icon { width: 20px; height: 20px; opacity: 0.7; }
         p, li { font-size: 1.05rem; line-height: 1.6; }
         ul { list-style-type: none; padding-left: 0; margin-bottom: 1rem; }
         li { margin-bottom: 0.75rem; padding-left: 1.75rem; position: relative; }
-        li::before {
-            content: '✓'; position: absolute; left: 0; color: #e1b671;
-            font-weight: bold; font-size: 1rem;
-        }
+        li::before { content: '✓'; position: absolute; left: 0; color: var(--color-accent); font-weight: bold; font-size: 1rem; }
         strong.chance { color: #5a9a68; font-weight: 600; }
         strong.risiko { color: #c55a5a; font-weight: 600; }
 
         /* Themed Blocks for sections */
         .themed-block {
             transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
-            border-left-width: 4px;
-            border-radius: 0 8px 8px 0;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            border-left-width: 4px; border-radius: 0 8px 8px 0;
+            padding: 1.5rem; margin-bottom: 1.5rem;
         }
-        .kdd-section { border-color: #bbe4f7; background-color: #f0f9ff; }
-        .insta-section { border-color: #b19baa; background-color: #f8f5f7; }
-        .influencer-section { border-color: #e1b671; background-color: #fffaf0; }
-        .fazit-section { border-color: #928a5d; background-color: #f9f8f2; }
-
-        /* Weiterbildung Section */
-        .resource-card {
-            background-color: #ffffff; border: 1px solid #ebdfb4;
-            border-radius: 12px; padding: 1.5rem; transition: all 0.3s ease;
-            display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .resource-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(146, 138, 93, 0.2);
-            border-color: #e1b671;
-        }
-        .resource-card h5 { font-size: 1.1rem; font-weight: 600; color: #928a5d; margin-bottom: 0.75rem; }
-        .resource-card p { font-size: 0.95rem; flex-grow: 1; margin-bottom: 1rem; }
-        .resource-card a.external-link-button {
-            display: inline-block; background-color: #928a5d; color: white;
-            padding: 0.6rem 1rem; border-radius: 8px; text-align: center;
-            font-weight: 500; font-size: 0.9rem; transition: background-color 0.2s ease;
-            text-decoration: none;
-        }
-        .resource-card a.external-link-button:hover { background-color: #7a734e; }
-
-        /* AI Modal Styling */
-        .ai-modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center;
-            z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0s 0.3s linear;
-        }
-        .ai-modal-overlay.visible { opacity: 1; visibility: visible; transition: opacity 0.3s ease; }
-        .ai-modal-content {
-            background-color: white; padding: 2rem; border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2); width: 90%; max-width: 600px;
-            max-height: 80vh; overflow-y: auto; transform: scale(0.9); transition: transform 0.3s ease;
-        }
-        .ai-modal-overlay.visible .ai-modal-content { transform: scale(1); }
-        #ai-response-area strong { font-weight: 600; }
-        .loading-indicator { text-align: center; color: #928a5d; font-style: italic; }
+        .kdd-section { border-color: var(--color-themed-blue-border); background-color: var(--color-themed-blue-bg); }
+        .insta-section { border-color: var(--color-themed-pink-border); background-color: var(--color-themed-pink-bg); }
+        .influencer-section { border-color: var(--color-accent); background-color: #fffaf0; }
+        .fazit-section { border-color: var(--color-primary); background-color: #f9f8f2; }
 
         /* Poll Styling */
-        .sequential-poll-container {
-            margin-top: 1.5rem; margin-bottom:1.5rem; padding: 1.5rem;
-            background-color: #f9f8f2; border: 1px solid #ebdfb4;
-            border-radius: 12px;
-        }
-        .poll-thesis { font-size: 1.1rem; font-weight: 600; color: #928a5d; margin-bottom: 1rem; }
         .poll-options { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 1rem; }
-        .poll-button {
-            padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: 500;
-            transition: all 0.2s ease; cursor: pointer;
-            font-size: 0.9rem; border: 1px solid;
-        }
         .poll-button.agree { background-color: #e0f2e5; color: #3a6b47; border-color: #b8e0c3; }
         .poll-button.agree:hover { background-color: #cde7d3; transform: translateY(-2px); }
         .poll-button.disagree { background-color: #fbe2e3; color: #8c3a3c; border-color: #f4c1c2; }
         .poll-button.disagree:hover { background-color: #f6d0d1; transform: translateY(-2px); }
         .poll-button.neutral { background-color: #e5e7eb; color: #4b5563; border-color: #d1d5db; }
         .poll-button.neutral:hover { background-color: #d1d5db; transform: translateY(-2px); }
-        
-        .result-bar-container { display: flex; height: 24px; background-color: #ebdfb4; border-radius: 6px; overflow: hidden; margin-bottom: 0.5rem; border: 1px solid #dcd0a4;}
-        .result-bar-fill {
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.75rem; color: white; font-weight: 600;
-            transition: width 0.5s ease-in-out; padding: 0 0.5rem;
-        }
+        .result-bar-container { display: flex; height: 24px; background-color: var(--color-bg-medium); border-radius: 6px; overflow: hidden; margin-bottom: 0.5rem; border: 1px solid #dcd0a4;}
         .result-bar-fill.agree { background-color: #8cb397; }
         .result-bar-fill.disagree { background-color: #d19a9b; }
         .result-bar-fill.neutral { background-color: #a1a1aa; }
-        .poll-disclaimer { font-size: 0.8rem; color: #a0a0a0; margin-top: 0.75rem; font-style: italic; }
 
+        /* Animations */
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .content-fade-in { animation: fadeIn 0.5s ease-in-out forwards; }
         .hidden { display: none; }
-        .completion-message {
-            text-align: center; padding: 16px; background-color: #ebdfb4; color: #928a5d;
-            border: 1px solid #e1b671; border-radius: 8px; margin-top: 16px;
-            font-weight: 500; font-size: 0.95rem;
+        
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(146, 138, 93, 0.4); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(146, 138, 93, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(146, 138, 93, 0); }
+        }
+        .pulsing {
+            animation: pulse 2s infinite;
         }
     </style>
 </head>
@@ -259,9 +200,9 @@
             <h2 class="text-2xl font-semibold mb-4 section-title">Startpunkt: Ein Blick auf Instagram-Reels</h2>
             <p class="text-gray-600 mb-6">Bitte sieh dir zuerst dieses kurze Video an, um einen Eindruck vom Thema zu bekommen. Es zeigt typische Ausschnitte, wie sie im #instalehrerzimmer und von Bildungsinfluencerinnen geteilt werden.</p>
             <div class="video-short-container">
-                <iframe src="https://www.youtube.com/embed/_9_GHzs6dDw?autoplay=1&mute=1&loop=1&playlist=_9_GHzs6dDw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div id="youtube-player"></div>
             </div>
-            <button id="proceed-to-interactive" class="proceed-button">
+            <button id="proceed-to-interactive" class="proceed-button pulsing">
                 Weiter zur interaktiven Analyse
             </button>
         </section>
@@ -305,26 +246,15 @@
             <div id="completion-message-container"></div>
             <main id="content-display" class="content-card"></main>
         </div>
-
-        <div id="ai-chat-modal-overlay" class="ai-modal-overlay hidden">
-            <div class="ai-modal-content">
-                <h4><svg class="heading-icon inline-block mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:24px; height:24px; color: #928a5d;"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" /></svg>Frag den KI-Experten</h4>
-                <p class="text-sm text-gray-600 mb-4 text-center">Stell deine Frage zum Thema #instalehrerzimmer, Bildungsinfluencer und Kultur der Digitalität.</p>
-                <textarea id="ai-question-input" placeholder="Deine Frage..." rows="3"></textarea>
-                <button id="ai-submit-question">Frage absenden</button>
-                <div id="ai-response-area" class="hidden"></div>
-                <div id="ai-loading-indicator" class="loading-indicator hidden">Wird geladen...</div>
-                <button id="ai-modal-close-button" class="ai-modal-close-button">Schließen</button>
-            </div>
-        </div>
     </div>
 
-    <!-- Firebase SDK -->
+    <!-- Firebase and YouTube IFrame API SDKs -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, runTransaction, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, doc, runTransaction, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // --- DEINE FIREBASE KONFIGURATION ---
         const firebaseConfig = {
@@ -400,7 +330,7 @@
         function checkButtonLocks() {
             const allMainVisited = sectionsForFazitUnlock.every(key => visitedSections.has(key));
             if (allMainVisited) {
-                fazitButton.classList.remove('locked');
+                fazitButton.classList.remove('locked', 'pulsing');
                 fazitButton.disabled = false;
                 if (!completionMessageContainer.querySelector('.completion-message') && !visitedSections.has('fazit')) {
                     const messageDiv = document.createElement('div');
@@ -408,15 +338,23 @@
                     messageDiv.textContent = 'Super! Du hast alle Hauptbereiche erkundet. Das Fazit ist jetzt freigeschaltet.';
                     completionMessageContainer.innerHTML = '';
                     completionMessageContainer.appendChild(messageDiv);
+                    fazitButton.classList.add('pulsing');
                 }
             }
             if (visitedSections.has('fazit')) {
-                weiterbildungButton.classList.remove('locked');
+                weiterbildungButton.classList.remove('locked', 'pulsing');
                 weiterbildungButton.disabled = false;
+                fazitButton.classList.remove('pulsing');
                 const existingMessage = completionMessageContainer.querySelector('.completion-message');
                 if (existingMessage && existingMessage.textContent.includes("Fazit ist jetzt freigeschaltet")) {
                      completionMessageContainer.innerHTML = '';
                 }
+                 if (!visitedSections.has('weiterbildung')) {
+                    weiterbildungButton.classList.add('pulsing');
+                }
+            }
+             if (visitedSections.has('weiterbildung')) {
+                weiterbildungButton.classList.remove('pulsing');
             }
         }
 
@@ -446,6 +384,9 @@
         }
 
         proceedButton.addEventListener('click', () => {
+            if (youtubePlayer && typeof youtubePlayer.stopVideo === 'function') {
+                youtubePlayer.stopVideo();
+            }
             initialVideoSection.classList.add('hidden');
             interactiveSection.classList.remove('hidden');
             interactiveSection.classList.add('content-fade-in');
@@ -460,6 +401,23 @@
             }
         });
         
+        // --- YouTube Player Logic ---
+        let youtubePlayer;
+        window.onYouTubeIframeAPIReady = function() {
+            youtubePlayer = new YT.Player('youtube-player', {
+                height: '100%',
+                width: '100%',
+                videoId: '_9_GHzs6dDw',
+                playerVars: {
+                    'playsinline': 1,
+                    'loop': 1,
+                    'playlist': '_9_GHzs6dDw', // Required for loop to work
+                    'controls': 0,
+                    'rel': 0
+                }
+            });
+        }
+
         // --- Poll Logic ---
         const pollCollectionId = "interactivePolls";
         const pollDocId = "bildungsfluencerPoll";
@@ -483,20 +441,18 @@
                     pollContainer.querySelector('#collected-poll-results').classList.remove('hidden');
                     document.getElementById('bildungsfluencer-details-content').classList.remove('hidden');
                     
-                    const resultsContainer = document.getElementById('poll-results-container');
-                    resultsContainer.innerHTML = "<p>Ergebnisse werden geladen...</p>";
-
-                    try {
-                        const docSnap = await getDoc(doc(db, pollCollectionId, pollDocId));
+                    if (unsubscribePoll) unsubscribePoll();
+                    unsubscribePoll = onSnapshot(doc(db, pollCollectionId, pollDocId), (docSnap) => {
+                        const resultsContainer = document.getElementById('poll-results-container');
                         if (docSnap.exists()) {
                             updatePollResultsUI(docSnap.data());
                         } else {
                             resultsContainer.innerHTML = "<p>Noch keine Abstimmungsergebnisse vorhanden.</p>";
                         }
-                    } catch (error) {
-                         console.error("Error fetching poll results:", error);
-                         resultsContainer.innerHTML = "<p>Fehler beim Laden der Ergebnisse.</p>";
-                    }
+                    }, (error) => {
+                        console.error("Error with real-time listener: ", error);
+                        document.getElementById('poll-results-container').innerHTML = "<p>Fehler beim Laden der Ergebnisse.</p>";
+                    });
                 }
             }
 
@@ -587,19 +543,6 @@
             }
             container.innerHTML = html;
         }
-
-        // --- AI Modal Logic ---
-        const aiModalOverlay = document.getElementById('ai-chat-modal-overlay');
-        const aiModalCloseButton = document.getElementById('ai-modal-close-button');
-        const aiSubmitQuestionButton = document.getElementById('ai-submit-question');
-        
-        aiModalCloseButton?.addEventListener('click', () => aiModalOverlay.classList.remove('visible'));
-        aiModalOverlay?.addEventListener('click', (e) => {
-            if (e.target === aiModalOverlay) aiModalOverlay.classList.remove('visible');
-        });
-        aiSubmitQuestionButton?.addEventListener('click', async () => {
-            // AI logic remains the same
-        });
 
     </script>
 </body>
