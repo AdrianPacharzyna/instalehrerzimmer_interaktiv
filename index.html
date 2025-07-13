@@ -113,10 +113,9 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             background-color: #000;
         }
-        .video-short-container iframe {
+        #youtube-player {
             width: 100%;
             height: 100%;
-            border: 0;
         }
 
         .proceed-button {
@@ -130,8 +129,8 @@
         h1.main-title { color: var(--color-primary); font-size: 2.5rem; }
         h2.section-title { color: var(--color-primary); font-size: 1.75rem; }
         h3.content-title { font-size: 1.6rem; font-weight: 600; margin-bottom: 1rem; color: var(--color-primary); }
-        h4 { font-size: 1.2rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; color: var(--color-primary); }
-        h4 .heading-icon { width: 20px; height: 20px; opacity: 0.7; }
+        h4, h5 { font-size: 1.2rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; color: var(--color-primary); }
+        .heading-icon { width: 20px; height: 20px; opacity: 0.7; }
         p, li { font-size: 1.05rem; line-height: 1.6; }
         ul { list-style-type: none; padding-left: 0; margin-bottom: 1rem; }
         li { margin-bottom: 0.75rem; padding-left: 1.75rem; position: relative; }
@@ -234,7 +233,7 @@
             <h2 class="text-2xl font-semibold mb-4 section-title">Startpunkt deiner Analyse</h2>
             <p class="text-gray-600 mb-6">Beginne deine interaktive Entdeckungsreise in die Welt des #instalehrerzimmers und der Bildungsinfluencer\*innen.</p>
             <div class="video-short-container">
-                <iframe id="youtube-player" src="https://www.youtube.com/embed/_9_GHzs6dDw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div id="youtube-player"></div>
             </div>
             <button id="proceed-to-interactive" class="proceed-button pulsing">
                 Analyse starten
@@ -282,6 +281,7 @@
         </div>
     </div>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script type="module">
         // Content for each section
         const contentData = {
@@ -404,9 +404,10 @@
         }
 
         proceedButton.addEventListener('click', () => {
-            const player = document.getElementById('youtube-player');
-            if (player) {
-                player.src = ""; // This stops the video
+            const playerIframe = document.getElementById('youtube-player');
+            if (playerIframe) {
+                // This effectively stops the video by replacing the content
+                playerIframe.src = playerIframe.src; 
             }
             initialVideoSection.classList.add('hidden');
             interactiveSection.classList.remove('hidden');
