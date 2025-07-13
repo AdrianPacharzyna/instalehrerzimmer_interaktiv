@@ -113,9 +113,10 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             background-color: #000;
         }
-        #youtube-player {
+        .video-short-container iframe {
             width: 100%;
             height: 100%;
+            border: 0;
         }
 
         .proceed-button {
@@ -129,7 +130,7 @@
         h1.main-title { color: var(--color-primary); font-size: 2.5rem; }
         h2.section-title { color: var(--color-primary); font-size: 1.75rem; }
         h3.content-title { font-size: 1.6rem; font-weight: 600; margin-bottom: 1rem; color: var(--color-primary); }
-        h4, h5 { font-size: 1.2rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; color: var(--color-primary); }
+        h4 { font-size: 1.2rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; color: var(--color-primary); }
         .heading-icon { width: 20px; height: 20px; opacity: 0.7; }
         p, li { font-size: 1.05rem; line-height: 1.6; }
         ul { list-style-type: none; padding-left: 0; margin-bottom: 1rem; }
@@ -148,6 +149,26 @@
         .influencer-section { border-color: var(--color-accent); background-color: #fffaf0; }
         .fazit-section { border-color: var(--color-primary); background-color: #f9f8f2; }
 
+        .resource-card {
+            background-color: #ffffff; border: 1px solid var(--color-bg-medium);
+            border-radius: 12px; padding: 1.5rem; transition: all 0.3s ease;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(146, 138, 93, 0.2);
+            border-color: var(--color-accent);
+        }
+        .resource-card h5 { font-size: 1.1rem; font-weight: 600; color: var(--color-primary); margin-top:0; margin-bottom: 0.75rem; }
+        .resource-card p { font-size: 0.95rem; flex-grow: 1; margin-bottom: 1rem; }
+        .resource-card a.external-link-button {
+            display: inline-block; background-color: var(--color-primary); color: white;
+            padding: 0.6rem 1rem; border-radius: 8px; text-align: center;
+            font-weight: 500; font-size: 0.9rem; transition: background-color 0.2s ease;
+            text-decoration: none;
+        }
+        .resource-card a.external-link-button:hover { background-color: #7a734e; }
+        
         /* Drag and Drop Sorting Task */
         .sorting-task-container {
             background-color: #f9f8f2; border: 1px solid var(--color-bg-medium);
@@ -404,10 +425,9 @@
         }
 
         proceedButton.addEventListener('click', () => {
-            const playerIframe = document.getElementById('youtube-player');
-            if (playerIframe) {
-                // This effectively stops the video by replacing the content
-                playerIframe.src = playerIframe.src; 
+            const playerContainer = document.querySelector('.video-short-container');
+            if (playerContainer) {
+                playerContainer.innerHTML = ''; // Remove the iframe to stop the video
             }
             initialVideoSection.classList.add('hidden');
             interactiveSection.classList.remove('hidden');
@@ -423,6 +443,24 @@
             }
         });
         
+        // --- YouTube Player Logic ---
+        let player;
+        function onYouTubeIframeAPIReady() {
+          player = new YT.Player('youtube-player', {
+            height: '100%',
+            width: '100%',
+            videoId: '_9_GHzs6dDw',
+            playerVars: {
+              'playsinline': 1,
+              'controls': 1,
+              'rel': 0,
+              'modestbranding': 1
+            }
+          });
+        }
+        window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+
+
         // --- Drag and Drop Sorting Task Logic ---
         function initializeSortingTask() {
             const cards = document.querySelectorAll('.thesis-card');
@@ -473,3 +511,4 @@
     </script>
 </body>
 </html>
+
