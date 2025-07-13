@@ -9,12 +9,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <style>
-        /* --- Blog Design Palette --- */
         :root {
-            --color-primary: #928a5d; /* Dunkles Grün/Braun */
-            --color-accent: #e1b671;  /* Gold/Ocker */
-            --color-bg-light: #faf7d6; /* Sehr helles Beige/Creme */
-            --color-bg-medium: #ebdfb4;/* Helles Beige */
+            --color-primary: #928a5d;
+            --color-accent: #e1b671;
+            --color-bg-light: #faf7d6;
+            --color-bg-medium: #ebdfb4;
             --color-text: #3a3a3a;
             --color-themed-blue-bg: #f0f9ff;
             --color-themed-blue-border: #bbe4f7;
@@ -36,7 +35,6 @@
             transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
             border: 1px solid var(--color-bg-medium);
         }
-
         .progress-bar-container {
             width: 100%;
             background-color: var(--color-bg-medium);
@@ -57,7 +55,6 @@
             font-size: 0.75rem;
             font-weight: 600;
         }
-
         .nav-button {
             display: flex;
             align-items: center;
@@ -90,7 +87,7 @@
             color: var(--color-primary);
             border-color: var(--color-bg-medium);
         }
-         .nav-button.visited:not(.active):hover {
+        .nav-button.visited:not(.active):hover {
             background-color: var(--color-bg-medium);
             border-color: var(--color-accent);
         }
@@ -104,30 +101,18 @@
         .nav-button .visited-icon { width: 16px; height: 16px; color: var(--color-primary); display: none; }
         .nav-button.visited .visited-icon { display: inline-block; }
 
-        /* Initial Section Styling */
         .initial-container {
             background-color: white; border-radius: 12px;
             box-shadow: 0 4px 15px -2px rgba(0, 0, 0, 0.07);
             border: 1px solid var(--color-bg-medium);
             padding: 24px; margin-bottom: 32px; text-align: center;
         }
-        
-        /* YouTube Short Embed Styling */
-        .video-short-container {
-            width: 100%;
-            max-width: 315px; /* Typical short width */
-            margin: 0 auto 24px auto;
-            aspect-ratio: 9 / 16;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            background-color: #000;
+        .intro-placeholder {
+            background-color: var(--color-bg-medium); border-radius: 12px;
+            width: 100%; max-width: 480px; height: 270px; margin: 0 auto 24px auto;
+            display: flex; align-items: center; justify-content: center; color: var(--color-primary);
         }
-        #youtube-player {
-            width: 100%;
-            height: 100%;
-        }
-
+        .intro-placeholder svg { width: 80px; height: 80px; opacity: 0.5; }
 
         .proceed-button {
             background-color: var(--color-accent); color: white; padding: 12px 24px;
@@ -137,7 +122,6 @@
         }
         .proceed-button:hover { background-color: #d8a95a; transform: scale(1.05); }
 
-        /* Typography */
         h1.main-title { color: var(--color-primary); font-size: 2.5rem; }
         h2.section-title { color: var(--color-primary); font-size: 1.75rem; }
         h3.content-title { font-size: 1.6rem; font-weight: 600; margin-bottom: 1rem; color: var(--color-primary); }
@@ -150,7 +134,6 @@
         strong.chance { color: #5a9a68; font-weight: 600; }
         strong.risiko { color: #c55a5a; font-weight: 600; }
 
-        /* Themed Blocks for sections */
         .themed-block {
             transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
             border-left-width: 4px; border-radius: 0 8px 8px 0;
@@ -161,20 +144,51 @@
         .influencer-section { border-color: var(--color-accent); background-color: #fffaf0; }
         .fazit-section { border-color: var(--color-primary); background-color: #f9f8f2; }
 
-        /* Poll Styling */
-        .poll-options { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 1rem; }
-        .poll-button.agree { background-color: #e0f2e5; color: #3a6b47; border-color: #b8e0c3; }
-        .poll-button.agree:hover { background-color: #cde7d3; transform: translateY(-2px); }
-        .poll-button.disagree { background-color: #fbe2e3; color: #8c3a3c; border-color: #f4c1c2; }
-        .poll-button.disagree:hover { background-color: #f6d0d1; transform: translateY(-2px); }
-        .poll-button.neutral { background-color: #e5e7eb; color: #4b5563; border-color: #d1d5db; }
-        .poll-button.neutral:hover { background-color: #d1d5db; transform: translateY(-2px); }
-        .result-bar-container { display: flex; height: 24px; background-color: var(--color-bg-medium); border-radius: 6px; overflow: hidden; margin-bottom: 0.5rem; border: 1px solid #dcd0a4;}
-        .result-bar-fill.agree { background-color: #8cb397; }
-        .result-bar-fill.disagree { background-color: #d19a9b; }
-        .result-bar-fill.neutral { background-color: #a1a1aa; }
+        /* Drag and Drop Sorting Task */
+        .sorting-task-container {
+            background-color: #f9f8f2; border: 1px solid var(--color-bg-medium);
+            padding: 1.5rem; border-radius: 12px;
+        }
+        .thesis-cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            min-height: 100px;
+        }
+        .thesis-card {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--color-bg-medium);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            cursor: grab;
+            transition: all 0.2s ease-in-out;
+            width: 100%;
+            max-width: 350px;
+        }
+        .thesis-card:hover { transform: translateY(-3px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .thesis-card.dragging { opacity: 0.5; transform: scale(0.95); }
+        
+        .drop-zones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .drop-zone {
+            border: 2px dashed var(--color-bg-medium);
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 150px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .drop-zone h5 { margin-top: 0; text-align: center; color: var(--color-primary); }
+        .drop-zone.drag-over {
+            background-color: #e1f5e6;
+            border-color: #8cb397;
+        }
 
-        /* Animations */
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .content-fade-in { animation: fadeIn 0.5s ease-in-out forwards; }
         .hidden { display: none; }
@@ -197,13 +211,15 @@
         </header>
 
         <section id="initial-video-section" class="initial-container">
-            <h2 class="text-2xl font-semibold mb-4 section-title">Startpunkt: Ein Blick auf Instagram-Reels</h2>
-            <p class="text-gray-600 mb-6">Bitte sieh dir zuerst dieses kurze Video an, um einen Eindruck vom Thema zu bekommen. Es zeigt typische Ausschnitte, wie sie im #instalehrerzimmer und von Bildungsinfluencerinnen geteilt werden.</p>
-            <div class="video-short-container">
-                <div id="youtube-player"></div>
+            <h2 class="text-2xl font-semibold mb-4 section-title">Startpunkt deiner Analyse</h2>
+            <p class="text-gray-600 mb-6">Beginne deine interaktive Entdeckungsreise in die Welt des #instalehrerzimmers und der Bildungsinfluencer\*innen.</p>
+            <div class="intro-placeholder">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                </svg>
             </div>
             <button id="proceed-to-interactive" class="proceed-button pulsing">
-                Weiter zur interaktiven Analyse
+                Analyse starten
             </button>
         </section>
 
@@ -248,37 +264,7 @@
         </div>
     </div>
 
-    <!-- Firebase and YouTube IFrame API SDKs -->
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, runTransaction, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // --- DEINE FIREBASE KONFIGURATION ---
-        const firebaseConfig = {
-            apiKey: "AIzaSyB-Ya67Kx6r_rZU67Oe8j9I60pqAx2trbM",
-            authDomain: "instalehrerzimmerumfrage.firebaseapp.com",
-            projectId: "instalehrerzimmerumfrage",
-            storageBucket: "instalehrerzimmerumfrage.firebasestorage.app",
-            messagingSenderId: "155888745176",
-            appId: "1:155888745176:web:eaf6755c08fce3039e35ad",
-            measurementId: "G-MYYT6GH2DL"
-        };
-        // ------------------------------------
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        // Authenticate user anonymously
-        signInAnonymously(auth).catch((error) => {
-            console.error("Anonymous sign-in failed:", error);
-            document.body.innerHTML = `<div style="padding: 40px; text-align: center; font-family: sans-serif; background-color: #fff5f5; color: #c53030;"><h1>Firebase Verbindungsfehler</h1><p>Die Anwendung konnte keine Verbindung zur Datenbank herstellen. Bitte überprüfe die Firebase-Konfiguration und die Sicherheitseinstellungen der Datenbank.</p><p>Fehlermeldung: ${error.message}</p></div>`;
-        });
-
         // Content for each section
         const contentData = {
             intro: {
@@ -295,7 +281,21 @@
             },
             bildungsfluencer: {
                 title: "Bildungsinfluencer*innen: Zwischen Einfluss und Kritik",
-                html: `<p class="mb-6 text-lg">Bildungsinfluencer – ein heiß diskutiertes Thema! Bevor wir tiefer in die Argumente eintauchen, was denkst du? Wir haben einige Thesen vorbereitet, die zum Diskutieren anregen. Deine Perspektive ist hier gefragt!</p><div class="sequential-poll-container" id="sequentialPoll"><div class="poll-question-step" id="poll-q1"><p class="poll-thesis">These 1: "Bildungsinfluencer sind eine <strong>Gefahr</strong> für die Professionalität von Lehrkräften."</p><div class="poll-options"><button class="poll-button agree" data-question-id="q1" data-choice="agree">Stimme zu</button><button class="poll-button neutral" data-question-id="q1" data-choice="neutral">Neutral</button><button class="poll-button disagree" data-question-id="q1" data-choice="disagree">Stimme nicht zu</button></div></div><div class="poll-question-step hidden" id="poll-q2"><p class="poll-thesis">These 2: "Das #instalehrerzimmer fördert primär <strong>oberflächlichen Austausch</strong> statt echter kollegialer Kooperation."</p><div class="poll-options"><button class="poll-button agree" data-question-id="q2" data-choice="agree">Trifft eher zu</button><button class="poll-button neutral" data-question-id="q2" data-choice="neutral">Neutral</button><button class="poll-button disagree" data-question-id="q2" data-choice="disagree">Trifft eher nicht zu</button></div></div><div class="poll-question-step hidden" id="poll-q3"><p class="poll-thesis">These 3: "Der Hype um <strong>'perfekte' Materialien</strong> und Klassenzimmer auf Instagram setzt Lehrkräfte unnötig unter Druck."</p><div class="poll-options"><button class="poll-button agree" data-question-id="q3" data-choice="agree">Absolut!</button><button class="poll-button neutral" data-question-id="q3" data-choice="neutral">Neutral</button><button class="poll-button disagree" data-question-id="q3" data-choice="disagree">Sehe ich nicht so.</button></div></div><div id="collected-poll-results" class="hidden mt-6"><h4>Danke für deine Teilnahme! So sieht die Community-Meinung zu den Thesen aus:</h4><div id="poll-results-container"><p>Ergebnisse werden geladen...</p></div><p class="poll-disclaimer mt-4"><em>Hinweis: Dies ist eine Live-Abstimmung aller Teilnehmer.</em></p></div></div><div id="bildungsfluencer-details-content" class="post-poll-content hidden"><p class="mt-8 mb-4 text-lg">Hier nun einige vertiefende Gedanken und Analysen zum Thema Bildungsinfluencer:</p><div class="themed-block influencer-section"><h4><svg class="heading-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52c2.62.352 4.908.908 7.036 1.76m-7.036-1.76A48.417 48.417 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52c2.62.352 4.908.908 7.036 1.76m-7.036-1.76A48.417 48.417 0 0012 4.5c-2.631 0-5.238.18-7.743.52m15.486 0A48.42 48.42 0 0112 10.5c-2.631 0-5.238-.18-7.743-.52m15.486 0c1.042-.162 2.058-.358 3.037-.577m-3.037.577A48.458 48.458 0 0112 15c-2.631 0-5.238-.18-7.743-.52m15.486 0c1.042-.162 2.058-.358 3.037-.577" /></svg>Kritische Perspektive (nach Philippe Wampfler):</h4><ul class="mb-4"><li>Verkaufen Reichweite statt echten Aktivismus zu betreiben.</li><li>Federn Kritik am System ab, um niemandem zu schaden.</li><li>Profitieren von Defiziten, ohne an echter Veränderung interessiert zu sein.</li><li>Oft mangelnde Fachexpertise, Fokus auf Selbstvermarktung.</li><li>Verdrängen Fachpersonen und simulieren Scheinkritik.</li></ul></div><div class="themed-block" style="border-color: #bbe4f7; background-color: #f0f9ff;"><h4 style="color: #5a8a9e;"><svg class="heading-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="stroke: #5a8a9e;"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>Fallbeispiel: Frau Waibel (@frau_waibel)</h4><p class="mb-3">Gina Waibel thematisiert antirassistische Bildung und politische Inhalte, teilt Lehrmaterial, ist aber auch umstritten (Stichwort: <strong>Mäßigungsgebot</strong>).</p><ul><li><strong class="chance">Potenzial:</strong> Nutzt Reichweite für aktivistische Positionen, regt Diskussionen an, stellt Materialien bereit.</li><li><strong class="risiko">Kontroversen:</strong> Vorwurf des Verstoßes gegen Mäßigungsgebot, politische Äußerungen führen zu Konflikten, kommerzielle Aspekte (Shop).</li></ul></div></div>`
+                html: `<p class="mb-6 text-lg">Bewerte die folgenden Thesen, indem du die Kärtchen in die passende Spalte ziehst. Deine Einschätzung ist gefragt!</p>
+                       <div class="sorting-task-container">
+                            <div id="thesis-cards-container" class="thesis-cards-container">
+                                <div class="thesis-card" draggable="true" id="card-1"><p><strong>These 1:</strong> Bildungsinfluencer sind eine <strong>Gefahr</strong> für die Professionalität von Lehrkräften.</p></div>
+                                <div class="thesis-card" draggable="true" id="card-2"><p><strong>These 2:</strong> Das #instalehrerzimmer fördert primär <strong>oberflächlichen Austausch</strong>.</p></div>
+                                <div class="thesis-card" draggable="true" id="card-3"><p><strong>These 3:</strong> Der Hype um <strong>'perfekte' Materialien</strong> setzt Lehrkräfte unnötig unter Druck.</p></div>
+                            </div>
+                            <p class="text-center font-semibold text-lg mb-4">Verbleibende Thesen: <span id="card-counter">3</span></p>
+                            <div class="drop-zones">
+                                <div class="drop-zone" data-zone="agree"><h5>Stimme eher zu</h5></div>
+                                <div class="drop-zone" data-zone="neutral"><h5>Neutral / Unentschieden</h5></div>
+                                <div class="drop-zone" data-zone="disagree"><h5>Stimme eher nicht zu</h5></div>
+                            </div>
+                       </div>
+                       <div id="bildungsfluencer-details-content" class="post-poll-content hidden"><p class="mt-8 mb-4 text-lg">Danke für deine Einschätzung! Hier nun einige vertiefende Gedanken und Analysen zum Thema Bildungsinfluencer:</p><div class="themed-block influencer-section"><h4><svg class="heading-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52c2.62.352 4.908.908 7.036 1.76m-7.036-1.76A48.417 48.417 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52c2.62.352 4.908.908 7.036 1.76m-7.036-1.76A48.417 48.417 0 0012 4.5c-2.631 0-5.238.18-7.743.52m15.486 0A48.42 48.42 0 0112 10.5c-2.631 0-5.238-.18-7.743-.52m15.486 0c1.042-.162 2.058-.358 3.037-.577m-3.037.577A48.458 48.458 0 0112 15c-2.631 0-5.238-.18-7.743-.52m15.486 0c1.042-.162 2.058-.358 3.037-.577" /></svg>Kritische Perspektive (nach Philippe Wampfler):</h4><ul class="mb-4"><li>Verkaufen Reichweite statt echten Aktivismus zu betreiben.</li><li>Federn Kritik am System ab, um niemandem zu schaden.</li><li>Profitieren von Defiziten, ohne an echter Veränderung interessiert zu sein.</li><li>Oft mangelnde Fachexpertise, Fokus auf Selbstvermarktung.</li><li>Verdrängen Fachpersonen und simulieren Scheinkritik.</li></ul></div><div class="themed-block" style="border-color: #bbe4f7; background-color: #f0f9ff;"><h4 style="color: #5a8a9e;"><svg class="heading-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="stroke: #5a8a9e;"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>Fallbeispiel: Frau Waibel (@frau_waibel)</h4><p class="mb-3">Gina Waibel thematisiert antirassistische Bildung und politische Inhalte, teilt Lehrmaterial, ist aber auch umstritten (Stichwort: <strong>Mäßigungsgebot</strong>).</p><ul><li><strong class="chance">Potenzial:</strong> Nutzt Reichweite für aktivistische Positionen, regt Diskussionen an, stellt Materialien bereit.</li><li><strong class="risiko">Kontroversen:</strong> Vorwurf des Verstoßes gegen Mäßigungsgebot, politische Äußerungen führen zu Konflikten, kommerzielle Aspekte (Shop).</li></ul></div></div>`
             },
             fazit: {
                 title: "Fazit & Ethische Wegweiser",
@@ -367,7 +367,7 @@
             contentDisplay.style.opacity = 0;
             setTimeout(() => {
                 contentDisplay.innerHTML = `<h3 class="content-title">${content.title}</h3>${content.html}`;
-                if (targetKey === 'bildungsfluencer') initializeSequentialPoll();
+                if (targetKey === 'bildungsfluencer') initializeSortingTask();
                 if (targetKey === 'weiterbildung') {
                     document.getElementById('open-ai-modal-button')?.addEventListener('click', () => {
                         document.getElementById('ai-chat-modal-overlay').classList.add('visible');
@@ -384,9 +384,6 @@
         }
 
         proceedButton.addEventListener('click', () => {
-            if (youtubePlayer && typeof youtubePlayer.stopVideo === 'function') {
-                youtubePlayer.stopVideo();
-            }
             initialVideoSection.classList.add('hidden');
             interactiveSection.classList.remove('hidden');
             interactiveSection.classList.add('content-fade-in');
@@ -401,151 +398,53 @@
             }
         });
         
-        // --- YouTube Player Logic ---
-        let youtubePlayer;
-        window.onYouTubeIframeAPIReady = function() {
-            youtubePlayer = new YT.Player('youtube-player', {
-                height: '100%',
-                width: '100%',
-                videoId: '_9_GHzs6dDw',
-                playerVars: {
-                    'playsinline': 1,
-                    'loop': 1,
-                    'playlist': '_9_GHzs6dDw', // Required for loop to work
-                    'controls': 0,
-                    'rel': 0
-                }
-            });
-        }
+        // --- Drag and Drop Sorting Task Logic ---
+        function initializeSortingTask() {
+            const cards = document.querySelectorAll('.thesis-card');
+            const dropZones = document.querySelectorAll('.drop-zone');
+            const cardContainer = document.getElementById('thesis-cards-container');
+            const cardCounter = document.getElementById('card-counter');
 
-        // --- Poll Logic ---
-        const pollCollectionId = "interactivePolls";
-        const pollDocId = "bildungsfluencerPoll";
-        const pollQuestions = {
-            q1: 'These 1: "Bildungsinfluencer sind eine Gefahr für die Professionalität von Lehrkräften."',
-            q2: 'These 2: "Das #instalehrerzimmer fördert primär oberflächlichen Austausch statt echter kollegialer Kooperation."',
-            q3: 'These 3: "Der Hype um \'perfekte\' Materialien und Klassenzimmer auf Instagram setzt Lehrkräfte unnötig unter Druck."'
-        };
-        let unsubscribePoll;
+            cards.forEach(card => {
+                card.addEventListener('dragstart', () => {
+                    card.classList.add('dragging');
+                });
 
-        function initializeSequentialPoll() {
-            const pollContainer = document.getElementById('sequentialPoll');
-            if (!pollContainer) return;
-            
-            let currentStep = 0;
-            const steps = Array.from(pollContainer.querySelectorAll('.poll-question-step'));
-            
-            async function showNextStep() {
-                steps.forEach((step, index) => step.classList.toggle('hidden', index !== currentStep));
-                if (currentStep >= steps.length) {
-                    pollContainer.querySelector('#collected-poll-results').classList.remove('hidden');
-                    document.getElementById('bildungsfluencer-details-content').classList.remove('hidden');
-                    
-                    if (unsubscribePoll) unsubscribePoll();
-                    unsubscribePoll = onSnapshot(doc(db, pollCollectionId, pollDocId), (docSnap) => {
-                        const resultsContainer = document.getElementById('poll-results-container');
-                        if (docSnap.exists()) {
-                            updatePollResultsUI(docSnap.data());
-                        } else {
-                            resultsContainer.innerHTML = "<p>Noch keine Abstimmungsergebnisse vorhanden.</p>";
-                        }
-                    }, (error) => {
-                        console.error("Error with real-time listener: ", error);
-                        document.getElementById('poll-results-container').innerHTML = "<p>Fehler beim Laden der Ergebnisse.</p>";
-                    });
-                }
-            }
-
-            pollContainer.addEventListener('click', async (e) => {
-                if (!e.target.matches('.poll-button')) return;
-                
-                const button = e.target;
-                button.parentElement.style.pointerEvents = 'none';
-                button.parentElement.style.opacity = '0.5';
-
-                const questionId = button.dataset.questionId;
-                const choice = button.dataset.choice;
-                
-                await voteInPoll(questionId, choice);
-                
-                setTimeout(() => {
-                    currentStep++;
-                    showNextStep();
-                }, 400);
+                card.addEventListener('dragend', () => {
+                    card.classList.remove('dragging');
+                });
             });
 
-            showNextStep();
-        }
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', e => {
+                    e.preventDefault();
+                    zone.classList.add('drag-over');
+                });
 
-        async function voteInPoll(questionId, choice) {
-            const pollRef = doc(db, pollCollectionId, pollDocId);
-            try {
-                await runTransaction(db, async (transaction) => {
-                    const pollDoc = await transaction.get(pollRef);
-                    let currentData = {};
-                    if (!pollDoc.exists()) {
-                         Object.keys(pollQuestions).forEach(qId => {
-                            currentData[qId] = { agree: 0, disagree: 0, neutral: 0 };
-                        });
-                    } else {
-                        currentData = pollDoc.data();
-                    }
-                    
-                    if (!currentData[questionId]) {
-                        currentData[questionId] = { agree: 0, disagree: 0, neutral: 0 };
-                    }
-                    
-                    currentData[questionId][choice] = (currentData[questionId][choice] || 0) + 1;
-                    
-                    if (!pollDoc.exists()) {
-                        transaction.set(pollRef, currentData);
-                    } else {
-                        transaction.update(pollRef, { [questionId]: currentData[questionId] });
+                zone.addEventListener('dragleave', () => {
+                    zone.classList.remove('drag-over');
+                });
+
+                zone.addEventListener('drop', e => {
+                    e.preventDefault();
+                    zone.classList.remove('drag-over');
+                    const draggingCard = document.querySelector('.dragging');
+                    if (draggingCard) {
+                        zone.appendChild(draggingCard);
+                        updateCardCounter();
                     }
                 });
-            } catch (error) {
-                console.error("Transaction failed: ", error);
-            }
-        }
+            });
 
-        function updatePollResultsUI(data) {
-            const container = document.getElementById('poll-results-container');
-            if (!container) return;
-            
-            let html = '';
-            for (const qId in pollQuestions) {
-                const questionData = data[qId] || { agree: 0, disagree: 0, neutral: 0 };
-                const agreeVotes = questionData.agree || 0;
-                const disagreeVotes = questionData.disagree || 0;
-                const neutralVotes = questionData.neutral || 0;
-                const totalVotes = agreeVotes + disagreeVotes + neutralVotes;
-                
-                let agreePercentage = 0;
-                let disagreePercentage = 0;
-                let neutralPercentage = 0;
-
-                if (totalVotes > 0) {
-                    agreePercentage = Math.round((agreeVotes / totalVotes) * 100);
-                    disagreePercentage = Math.round((disagreeVotes / totalVotes) * 100);
-                    neutralPercentage = 100 - agreePercentage - disagreePercentage;
+            function updateCardCounter() {
+                const remainingCards = cardContainer.querySelectorAll('.thesis-card').length;
+                cardCounter.textContent = remainingCards;
+                if (remainingCards === 0) {
+                    document.getElementById('bildungsfluencer-details-content').classList.remove('hidden');
+                     cardCounter.parentElement.classList.add('hidden');
                 }
-
-                html += `
-                    <div class="mb-4">
-                        <p class="poll-thesis text-sm">${pollQuestions[qId]}</p>
-                        <div class="result-bar-container">
-                            <div class="result-bar-fill agree" style="width: ${agreePercentage}%;" title="Zustimmung: ${agreePercentage}%"></div>
-                            <div class="result-bar-fill neutral" style="width: ${neutralPercentage}%;" title="Neutral: ${neutralPercentage}%"></div>
-                            <div class="result-bar-fill disagree" style="width: ${disagreePercentage}%;" title="Ablehnung: ${disagreePercentage}%"></div>
-                        </div>
-                    </div>
-                `;
             }
-            container.innerHTML = html;
         }
-
     </script>
 </body>
 </html>
-" of the immersive artifact "interactive_instalehrerzimmer_blog_element_v2" in the context.
-I'm still having issues with the poll. The message "Noch keine Abstimmungsergebnisse vorhanden." is still showing up. Can you please investigate and fix
