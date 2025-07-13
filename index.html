@@ -203,7 +203,7 @@
             border-radius: 12px;
         }
         .poll-thesis { font-size: 1.1rem; font-weight: 600; color: #928a5d; margin-bottom: 1rem; }
-        .poll-options { display: flex; gap: 1rem; justify-content: center; margin-bottom: 1rem; }
+        .poll-options { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 1rem; }
         .poll-button {
             padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: 500;
             transition: all 0.2s ease; cursor: pointer;
@@ -213,6 +213,8 @@
         .poll-button.agree:hover { background-color: #cde7d3; transform: translateY(-2px); }
         .poll-button.disagree { background-color: #fbe2e3; color: #8c3a3c; border-color: #f4c1c2; }
         .poll-button.disagree:hover { background-color: #f6d0d1; transform: translateY(-2px); }
+        .poll-button.neutral { background-color: #e5e7eb; color: #4b5563; border-color: #d1d5db; }
+        .poll-button.neutral:hover { background-color: #d1d5db; transform: translateY(-2px); }
         
         .result-bar-container { display: flex; height: 24px; background-color: #ebdfb4; border-radius: 6px; overflow: hidden; margin-bottom: 0.5rem; border: 1px solid #dcd0a4;}
         .result-bar-fill {
@@ -222,6 +224,7 @@
         }
         .result-bar-fill.agree { background-color: #8cb397; }
         .result-bar-fill.disagree { background-color: #d19a9b; }
+        .result-bar-fill.neutral { background-color: #a1a1aa; }
         .poll-disclaimer { font-size: 0.8rem; color: #a0a0a0; margin-top: 0.75rem; font-style: italic; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -351,7 +354,7 @@
             },
             bildungsfluencer: {
                 title: "Bildungsinfluencer*innen: Zwischen Einfluss und Kritik",
-                html: `<p class="mb-6 text-lg">Bildungsinfluencer – ein heiß diskutiertes Thema! Bevor wir tiefer in die Argumente eintauchen, was denkst du? Wir haben einige Thesen vorbereitet, die zum Diskutieren anregen. Deine Perspektive ist hier gefragt!</p><div class="sequential-poll-container" id="sequentialPoll"><div class="poll-question-step" id="poll-q1"><p class="poll-thesis">These 1: "Bildungsinfluencer sind eine <strong>Gefahr</strong> für die Professionalität von Lehrkräften."</p><div class="poll-options"><button class="poll-button agree" data-question-id="q1" data-choice="agree">Stimme zu</button><button class="poll-button disagree" data-question-id="q1" data-choice="disagree">Stimme nicht zu</button></div></div><div class="poll-question-step hidden" id="poll-q2"><p class="poll-thesis">These 2: "Das #instalehrerzimmer fördert primär <strong>oberflächlichen Austausch</strong> statt echter kollegialer Kooperation."</p><div class="poll-options"><button class="poll-button agree" data-question-id="q2" data-choice="agree">Trifft eher zu</button><button class="poll-button disagree" data-question-id="q2" data-choice="disagree">Trifft eher nicht zu</button></div></div><div class="poll-question-step hidden" id="poll-q3"><p class="poll-thesis">These 3: "Der Hype um <strong>'perfekte' Materialien</strong> und Klassenzimmer auf Instagram setzt Lehrkräfte unnötig unter Druck."</p><div class="poll-options"><button class="poll-button agree" data-question-id="q3" data-choice="agree">Absolut!</button><button class="poll-button disagree" data-question-id="q3" data-choice="disagree">Sehe ich nicht so.</button></div></div><div id="collected-poll-results" class="hidden mt-6"><h4>Danke für deine Teilnahme! So sieht die Community-Meinung zu den Thesen aus:</h4><div id="poll-results-container"></div><p class="poll-disclaimer mt-4"><em>Hinweis: Dies ist eine Live-Abstimmung aller Teilnehmer.</em></p></div></div><div id="bildungsfluencer-details-content" class="post-poll-content hidden"><p class="mt-8 mb-4 text-lg">Hier nun einige vertiefende Gedanken und Analysen zum Thema Bildungsinfluencer:</p><div class="themed-block influencer-section"><h4><svg class="heading-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52c2.62.352 4.908.908 7.036 1.76m-7.036-1.76A48.417 48.417 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52c2.62.352 4.908.908 7.036 1.76m-7.036-1.76A48.417 48.417 0 0012 4.5c-2.631 0-5.238.18-7.743.52m15.486 0A48.42 48.42 0 0112 10.5c-2.631 0-5.238-.18-7.743-.52m15.486 0c1.042-.162 2.058-.358 3.037-.577m-3.037.577A48.458 48.458 0 0112 15c-2.631 0-5.238-.18-7.743-.52m15.486 0c1.042-.162 2.058-.358 3.037-.577" /></svg>Kritische Perspektive (nach Philippe Wampfler):</h4><ul class="mb-4"><li>Verkaufen Reichweite statt echten Aktivismus zu betreiben.</li><li>Federn Kritik am System ab, um niemandem zu schaden.</li><li>Profitieren von Defiziten, ohne an echter Veränderung interessiert zu sein.</li><li>Oft mangelnde Fachexpertise, Fokus auf Selbstvermarktung.</li><li>Verdrängen Fachpersonen und simulieren Scheinkritik.</li></ul></div><div class="themed-block" style="border-color: #bbe4f7; background-color: #f0f9ff;"><h4 style="color: #5a8a9e;"><svg class="heading-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="stroke: #5a8a9e;"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>Fallbeispiel: Frau Waibel (@frau_waibel)</h4><p class="mb-3">Gina Waibel thematisiert antirassistische Bildung und politische Inhalte, teilt Lehrmaterial, ist aber auch umstritten (Stichwort: <strong>Mäßigungsgebot</strong>).</p><ul><li><strong class="chance">Potenzial:</strong> Nutzt Reichweite für aktivistische Positionen, regt Diskussionen an, stellt Materialien bereit.</li><li><strong class="risiko">Kontroversen:</strong> Vorwurf des Verstoßes gegen Mäßigungsgebot, politische Äußerungen führen zu Konflikten, kommerzielle Aspekte (Shop).</li></ul></div></div>`
+                html: `<p class="mb-6 text-lg">Bildungsinfluencer – ein heiß diskutiertes Thema! Bevor wir tiefer in die Argumente eintauchen, was denkst du? Wir haben einige Thesen vorbereitet, die zum Diskutieren anregen. Deine Perspektive ist hier gefragt!</p><div class="sequential-poll-container" id="sequentialPoll"><div class="poll-question-step" id="poll-q1"><p class="poll-thesis">These 1: "Bildungsinfluencer sind eine <strong>Gefahr</strong> für die Professionalität von Lehrkräften."</p><div class="poll-options"><button class="poll-button agree" data-question-id="q1" data-choice="agree">Stimme zu</button><button class="poll-button neutral" data-question-id="q1" data-choice="neutral">Neutral</button><button class="poll-button disagree" data-question-id="q1" data-choice="disagree">Stimme nicht zu</button></div></div><div class="poll-question-step hidden" id="poll-q2"><p class="poll-thesis">These 2: "Das #instalehrerzimmer fördert primär <strong>oberflächlichen Austausch</strong> statt echter kollegialer Kooperation."</p><div class="poll-options"><button class="poll-button agree" data-question-id="q2" data-choice="agree">Trifft eher zu</button><button class="poll-button neutral" data-question-id="q2" data-choice="neutral">Neutral</button><button class="poll-button disagree" data-question-id="q2" data-choice="disagree">Trifft eher nicht zu</button></div></div><div class="poll-question-step hidden" id="poll-q3"><p class="poll-thesis">These 3: "Der Hype um <strong>'perfekte' Materialien</strong> und Klassenzimmer auf Instagram setzt Lehrkräfte unnötig unter Druck."</p><div class="poll-options"><button class="poll-button agree" data-question-id="q3" data-choice="agree">Absolut!</button><button class="poll-button neutral" data-question-id="q3" data-choice="neutral">Neutral</button><button class="poll-button disagree" data-question-id="q3" data-choice="disagree">Sehe ich nicht so.</button></div></div><div id="collected-poll-results" class="hidden mt-6"><h4>Danke für deine Teilnahme! So sieht die Community-Meinung zu den Thesen aus:</h4><div id="poll-results-container"><p>Ergebnisse werden geladen...</p></div><p class="poll-disclaimer mt-4"><em>Hinweis: Dies ist eine Live-Abstimmung aller Teilnehmer.</em></p></div></div><div id="bildungsfluencer-details-content" class="post-poll-content hidden"><p class="mt-8 mb-4 text-lg">Hier nun einige vertiefende Gedanken und Analysen zum Thema Bildungsinfluencer:</p><div class="themed-block influencer-section"><h4><svg class="heading-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52c2.62.352 4.908.908 7.036 1.76m-7.036-1.76A48.417 48.417 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52c2.62.352 4.908.908 7.036 1.76m-7.036-1.76A48.417 48.417 0 0012 4.5c-2.631 0-5.238.18-7.743.52m15.486 0A48.42 48.42 0 0112 10.5c-2.631 0-5.238-.18-7.743-.52m15.486 0c1.042-.162 2.058-.358 3.037-.577m-3.037.577A48.458 48.458 0 0112 15c-2.631 0-5.238-.18-7.743-.52m15.486 0c1.042-.162 2.058-.358 3.037-.577" /></svg>Kritische Perspektive (nach Philippe Wampfler):</h4><ul class="mb-4"><li>Verkaufen Reichweite statt echten Aktivismus zu betreiben.</li><li>Federn Kritik am System ab, um niemandem zu schaden.</li><li>Profitieren von Defiziten, ohne an echter Veränderung interessiert zu sein.</li><li>Oft mangelnde Fachexpertise, Fokus auf Selbstvermarktung.</li><li>Verdrängen Fachpersonen und simulieren Scheinkritik.</li></ul></div><div class="themed-block" style="border-color: #bbe4f7; background-color: #f0f9ff;"><h4 style="color: #5a8a9e;"><svg class="heading-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="stroke: #5a8a9e;"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>Fallbeispiel: Frau Waibel (@frau_waibel)</h4><p class="mb-3">Gina Waibel thematisiert antirassistische Bildung und politische Inhalte, teilt Lehrmaterial, ist aber auch umstritten (Stichwort: <strong>Mäßigungsgebot</strong>).</p><ul><li><strong class="chance">Potenzial:</strong> Nutzt Reichweite für aktivistische Positionen, regt Diskussionen an, stellt Materialien bereit.</li><li><strong class="risiko">Kontroversen:</strong> Vorwurf des Verstoßes gegen Mäßigungsgebot, politische Äußerungen führen zu Konflikten, kommerzielle Aspekte (Shop).</li></ul></div></div>`
             },
             fazit: {
                 title: "Fazit & Ethische Wegweiser",
@@ -466,8 +469,13 @@
             // Listen for real-time updates on poll results
             if (unsubscribePoll) unsubscribePoll(); // Unsubscribe from previous listener
             unsubscribePoll = onSnapshot(doc(db, pollCollectionId, pollDocId), (doc) => {
-                if (doc.exists()) {
-                    updatePollResultsUI(doc.data());
+                const resultsContainer = document.getElementById('poll-results-container');
+                if (resultsContainer && resultsContainer.offsetParent !== null) { // Check if results are visible
+                    if (doc.exists()) {
+                        updatePollResultsUI(doc.data());
+                    } else {
+                        resultsContainer.innerHTML = "<p>Noch keine Abstimmungsergebnisse vorhanden.</p>";
+                    }
                 }
             });
 
@@ -476,6 +484,12 @@
                 if (currentStep >= steps.length) {
                     pollContainer.querySelector('#collected-poll-results').classList.remove('hidden');
                     document.getElementById('bildungsfluencer-details-content').classList.remove('hidden');
+                    // Trigger initial display of results
+                    getDoc(doc(db, pollCollectionId, pollDocId)).then(doc => {
+                         if (doc.exists()) {
+                            updatePollResultsUI(doc.data());
+                        }
+                    });
                 }
             }
 
@@ -483,13 +497,19 @@
                 if (!e.target.matches('.poll-button')) return;
                 
                 const button = e.target;
+                button.parentElement.style.pointerEvents = 'none';
+                button.parentElement.style.opacity = '0.5';
+
+
                 const questionId = button.dataset.questionId;
                 const choice = button.dataset.choice;
-                button.parentElement.style.display = 'none'; // Hide options after voting
-
+                
                 await voteInPoll(questionId, choice);
-                currentStep++;
-                showNextStep();
+                
+                setTimeout(() => {
+                    currentStep++;
+                    showNextStep();
+                }, 400);
             });
 
             showNextStep();
@@ -500,21 +520,26 @@
             try {
                 await runTransaction(db, async (transaction) => {
                     const pollDoc = await transaction.get(pollRef);
+                    let currentData = {};
                     if (!pollDoc.exists()) {
-                        const initialData = {};
-                        Object.keys(pollQuestions).forEach(qId => {
-                            initialData[qId] = { agree: 0, disagree: 0 };
+                         Object.keys(pollQuestions).forEach(qId => {
+                            currentData[qId] = { agree: 0, disagree: 0, neutral: 0 };
                         });
-                        transaction.set(pollRef, initialData);
+                    } else {
+                        currentData = pollDoc.data();
                     }
                     
-                    const newCounts = pollDoc.exists() ? pollDoc.data() : {};
-                    // Ensure the question structure exists
-                    if (!newCounts[questionId]) {
-                        newCounts[questionId] = { agree: 0, disagree: 0 };
+                    if (!currentData[questionId]) {
+                        currentData[questionId] = { agree: 0, disagree: 0, neutral: 0 };
                     }
-                    newCounts[questionId][choice] = (newCounts[questionId][choice] || 0) + 1;
-                    transaction.update(pollRef, { [questionId]: newCounts[questionId] });
+                    
+                    currentData[questionId][choice] = (currentData[questionId][choice] || 0) + 1;
+                    
+                    if (!pollDoc.exists()) {
+                        transaction.set(pollRef, currentData);
+                    } else {
+                        transaction.update(pollRef, { [questionId]: currentData[questionId] });
+                    }
                 });
             } catch (error) {
                 console.error("Transaction failed: ", error);
@@ -527,17 +552,20 @@
             
             let html = '';
             for (const qId in pollQuestions) {
-                const questionData = data[qId] || { agree: 0, disagree: 0 };
-                const totalVotes = questionData.agree + questionData.disagree;
-                const agreePercentage = totalVotes > 0 ? Math.round((questionData.agree / totalVotes) * 100) : 0;
-                const disagreePercentage = totalVotes > 0 ? 100 - agreePercentage : 0;
+                const questionData = data[qId] || { agree: 0, disagree: 0, neutral: 0 };
+                const totalVotes = (questionData.agree || 0) + (questionData.disagree || 0) + (questionData.neutral || 0);
+                
+                const agreePercentage = totalVotes > 0 ? Math.round(((questionData.agree || 0) / totalVotes) * 100) : 0;
+                const disagreePercentage = totalVotes > 0 ? Math.round(((questionData.disagree || 0) / totalVotes) * 100) : 0;
+                const neutralPercentage = totalVotes > 0 ? 100 - agreePercentage - disagreePercentage : 0;
 
                 html += `
                     <div class="mb-4">
                         <p class="poll-thesis text-sm">${pollQuestions[qId]}</p>
                         <div class="result-bar-container">
-                            <div class="result-bar-fill agree" style="width: ${agreePercentage}%;">${agreePercentage > 15 ? `${agreePercentage}%` : ''}</div>
-                            <div class="result-bar-fill disagree" style="width: ${disagreePercentage}%;">${disagreePercentage > 15 ? `${disagreePercentage}%` : ''}</div>
+                            <div class="result-bar-fill agree" style="width: ${agreePercentage}%;" title="Zustimmung: ${agreePercentage}%"></div>
+                            <div class="result-bar-fill neutral" style="width: ${neutralPercentage}%;" title="Neutral: ${neutralPercentage}%"></div>
+                            <div class="result-bar-fill disagree" style="width: ${disagreePercentage}%;" title="Ablehnung: ${disagreePercentage}%"></div>
                         </div>
                     </div>
                 `;
