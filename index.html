@@ -457,8 +457,7 @@
             q2: 'These 2: "Das #instalehrerzimmer fördert primär oberflächlichen Austausch statt echter kollegialer Kooperation."',
             q3: 'These 3: "Der Hype um \'perfekte\' Materialien und Klassenzimmer auf Instagram setzt Lehrkräfte unnötig unter Druck."'
         };
-        let unsubscribePoll;
-
+        
         function initializeSequentialPoll() {
             const pollContainer = document.getElementById('sequentialPoll');
             if (!pollContainer) return;
@@ -466,29 +465,24 @@
             let currentStep = 0;
             const steps = Array.from(pollContainer.querySelectorAll('.poll-question-step'));
             
-            // Listen for real-time updates on poll results
-            if (unsubscribePoll) unsubscribePoll(); // Unsubscribe from previous listener
-            unsubscribePoll = onSnapshot(doc(db, pollCollectionId, pollDocId), (doc) => {
-                const resultsContainer = document.getElementById('poll-results-container');
-                if (resultsContainer && resultsContainer.offsetParent !== null) { // Check if results are visible
-                    if (doc.exists()) {
-                        updatePollResultsUI(doc.data());
-                    } else {
-                        resultsContainer.innerHTML = "<p>Noch keine Abstimmungsergebnisse vorhanden.</p>";
-                    }
-                }
-            });
-
             function showNextStep() {
                 steps.forEach((step, index) => step.classList.toggle('hidden', index !== currentStep));
                 if (currentStep >= steps.length) {
                     pollContainer.querySelector('#collected-poll-results').classList.remove('hidden');
                     document.getElementById('bildungsfluencer-details-content').classList.remove('hidden');
-                    // Trigger initial display of results
+                    
+                    const resultsContainer = document.getElementById('poll-results-container');
+                    resultsContainer.innerHTML = "<p>Ergebnisse werden geladen...</p>";
+
                     getDoc(doc(db, pollCollectionId, pollDocId)).then(doc => {
                          if (doc.exists()) {
                             updatePollResultsUI(doc.data());
+                        } else {
+                            resultsContainer.innerHTML = "<p>Noch keine Abstimmungsergebnisse vorhanden. Sei der/die Erste, der/die abstimmt!</p>";
                         }
+                    }).catch(error => {
+                        console.error("Error fetching poll results:", error);
+                        resultsContainer.innerHTML = "<p>Fehler beim Laden der Ergebnisse.</p>";
                     });
                 }
             }
@@ -499,7 +493,6 @@
                 const button = e.target;
                 button.parentElement.style.pointerEvents = 'none';
                 button.parentElement.style.opacity = '0.5';
-
 
                 const questionId = button.dataset.questionId;
                 const choice = button.dataset.choice;
@@ -553,11 +546,20 @@
             let html = '';
             for (const qId in pollQuestions) {
                 const questionData = data[qId] || { agree: 0, disagree: 0, neutral: 0 };
-                const totalVotes = (questionData.agree || 0) + (questionData.disagree || 0) + (questionData.neutral || 0);
+                const agreeVotes = questionData.agree || 0;
+                const disagreeVotes = questionData.disagree || 0;
+                const neutralVotes = questionData.neutral || 0;
+                const totalVotes = agreeVotes + disagreeVotes + neutralVotes;
                 
-                const agreePercentage = totalVotes > 0 ? Math.round(((questionData.agree || 0) / totalVotes) * 100) : 0;
-                const disagreePercentage = totalVotes > 0 ? Math.round(((questionData.disagree || 0) / totalVotes) * 100) : 0;
-                const neutralPercentage = totalVotes > 0 ? 100 - agreePercentage - disagreePercentage : 0;
+                let agreePercentage = 0;
+                let disagreePercentage = 0;
+                let neutralPercentage = 0;
+
+                if (totalVotes > 0) {
+                    agreePercentage = Math.round((agreeVotes / totalVotes) * 100);
+                    disagreePercentage = Math.round((disagreeVotes / totalVotes) * 100);
+                    neutralPercentage = 100 - agreePercentage - disagreePercentage;
+                }
 
                 html += `
                     <div class="mb-4">
