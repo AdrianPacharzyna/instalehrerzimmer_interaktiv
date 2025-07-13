@@ -15,10 +15,6 @@
             --color-bg-light: #faf7d6;
             --color-bg-medium: #ebdfb4;
             --color-text: #3a3a3a;
-            --color-themed-blue-bg: #f0f9ff;
-            --color-themed-blue-border: #bbe4f7;
-            --color-themed-pink-bg: #f8f5f7;
-            --color-themed-pink-border: #b19baa;
         }
         
         body {
@@ -147,8 +143,8 @@
             border-left-width: 4px; border-radius: 0 8px 8px 0;
             padding: 1.5rem; margin-bottom: 1.5rem;
         }
-        .kdd-section { border-color: var(--color-themed-blue-border); background-color: var(--color-themed-blue-bg); }
-        .insta-section { border-color: var(--color-themed-pink-border); background-color: var(--color-themed-pink-bg); }
+        .kdd-section { border-color: #bbe4f7; background-color: #f0f9ff; }
+        .insta-section { border-color: #b19baa; background-color: #f8f5f7; }
         .influencer-section { border-color: var(--color-accent); background-color: #fffaf0; }
         .fazit-section { border-color: var(--color-primary); background-color: #f9f8f2; }
 
@@ -201,13 +197,13 @@
             transform: scale(1.02);
         }
 
-        .post-poll-content {
+        .post-sorting-content {
             transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
             opacity: 0;
             transform: translateY(20px);
         }
 
-        .post-poll-content:not(.hidden) {
+        .post-sorting-content:not(.hidden) {
             opacity: 1;
             transform: translateY(0);
         }
@@ -317,7 +313,7 @@
                                 <div class="drop-zone" data-zone="disagree"><h5>Stimme eher nicht zu</h5></div>
                             </div>
                        </div>
-                       <div id="bildungsfluencer-details-content" class="post-poll-content hidden"><p class="mt-8 mb-4 text-lg">Danke für deine Einschätzung! Hier nun einige vertiefende Gedanken und Analysen zum Thema Bildungsinfluencer:</p><div class="themed-block influencer-section"><h4><svg class="heading-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52c2.62.352 4.908.908 7.036 1.76m-7.036-1.76A48.417 48.417 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52c2.62.352 4.908.908 7.036 1.76m-7.036-1.76A48.417 48.417 0 0012 4.5c-2.631 0-5.238.18-7.743.52m15.486 0A48.42 48.42 0 0112 10.5c-2.631 0-5.238-.18-7.743-.52m15.486 0c1.042-.162 2.058-.358 3.037-.577m-3.037.577A48.458 48.458 0 0112 15c-2.631 0-5.238-.18-7.743-.52m15.486 0c1.042-.162 2.058-.358 3.037-.577" /></svg>Kritische Perspektive (nach Philippe Wampfler):</h4><ul class="mb-4"><li>Verkaufen Reichweite statt echten Aktivismus zu betreiben.</li><li>Federn Kritik am System ab, um niemandem zu schaden.</li><li>Profitieren von Defiziten, ohne an echter Veränderung interessiert zu sein.</li><li>Oft mangelnde Fachexpertise, Fokus auf Selbstvermarktung.</li><li>Verdrängen Fachpersonen und simulieren Scheinkritik.</li></ul></div><div class="themed-block" style="border-color: #bbe4f7; background-color: #f0f9ff;"><h4 style="color: #5a8a9e;"><svg class="heading-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="stroke: #5a8a9e;"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>Fallbeispiel: Frau Waibel (@frau_waibel)</h4><p class="mb-3">Gina Waibel thematisiert antirassistische Bildung und politische Inhalte, teilt Lehrmaterial, ist aber auch umstritten (Stichwort: <strong>Mäßigungsgebot</strong>).</p><ul><li><strong class="chance">Potenzial:</strong> Nutzt Reichweite für aktivistische Positionen, regt Diskussionen an, stellt Materialien bereit.</li><li><strong class="risiko">Kontroversen:</strong> Vorwurf des Verstoßes gegen Mäßigungsgebot, politische Äußerungen führen zu Konflikten, kommerzielle Aspekte (Shop).</li></ul></div></div>`
+                       <div id="bildungsfluencer-details-content" class="post-sorting-content hidden"><p class="mt-8 mb-4 text-lg">Danke für deine Einschätzung! Hier nun einige vertiefende Gedanken und Analysen zum Thema Bildungsinfluencer:</p><div class="themed-block influencer-section"><h4><svg class="heading-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52c2.62.352 4.908.908 7.036 1.76m-7.036-1.76A48.417 48.417 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52c2.62.352 4.908.908 7.036 1.76m-7.036-1.76A48.417 48.417 0 0012 4.5c-2.631 0-5.238.18-7.743.52m15.486 0A48.42 48.42 0 0112 10.5c-2.631 0-5.238-.18-7.743-.52m15.486 0c1.042-.162 2.058-.358 3.037-.577m-3.037.577A48.458 48.458 0 0112 15c-2.631 0-5.238-.18-7.743-.52m15.486 0c1.042-.162 2.058-.358 3.037-.577" /></svg>Kritische Perspektive (nach Philippe Wampfler):</h4><ul class="mb-4"><li>Verkaufen Reichweite statt echten Aktivismus zu betreiben.</li><li>Federn Kritik am System ab, um niemandem zu schaden.</li><li>Profitieren von Defiziten, ohne an echter Veränderung interessiert zu sein.</li><li>Oft mangelnde Fachexpertise, Fokus auf Selbstvermarktung.</li><li>Verdrängen Fachpersonen und simulieren Scheinkritik.</li></ul></div><div class="themed-block" style="border-color: #bbe4f7; background-color: #f0f9ff;"><h4 style="color: #5a8a9e;"><svg class="heading-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="stroke: #5a8a9e;"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>Fallbeispiel: Frau Waibel (@frau_waibel)</h4><p class="mb-3">Gina Waibel thematisiert antirassistische Bildung und politische Inhalte, teilt Lehrmaterial, ist aber auch umstritten (Stichwort: <strong>Mäßigungsgebot</strong>).</p><ul><li><strong class="chance">Potenzial:</strong> Nutzt Reichweite für aktivistische Positionen, regt Diskussionen an, stellt Materialien bereit.</li><li><strong class="risiko">Kontroversen:</strong> Vorwurf des Verstoßes gegen Mäßigungsgebot, politische Äußerungen führen zu Konflikten, kommerzielle Aspekte (Shop).</li></ul></div></div>`
             },
             fazit: {
                 title: "Fazit & Ethische Wegweiser",
@@ -470,5 +466,3 @@
     </script>
 </body>
 </html>
-" of the immersive artifact "interactive_instalehrerzimmer_blog_element_v2" in the context.
-I'm still having issues with the poll. The message "Noch keine Abstimmungsergebnisse vorhanden." is still showing up. Can you please investigate and fix
